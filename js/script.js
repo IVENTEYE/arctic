@@ -8,3 +8,11 @@ const headerScroll = () => {
 };
 
 window.addEventListener('scroll', headerScroll);
+
+const menu = document.querySelector('.menu-burger'),
+      menuBody = document.querySelector('.menu__body');
+
+menu.addEventListener('click', () => {
+    menu.classList.toggle('active');
+    menuBody.classList.toggle('active');
+});
