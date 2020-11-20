@@ -47,4 +47,68 @@ if (!isMobile.any()) {
 	}
 }
 	  	  
+const animItems = document.querySelectorAll('.anim-items');
 
+if (animItems.length > 0) {
+    const animOnScroll = () => {
+        for (animItem of animItems) {
+            const animItemHeight = animItem.offsetHeight;
+            const animItemOffset = offset(animItem).top;
+            const animStart = 4;
+
+            let animItemPoint = window.innerHeight - animItemHeight / animStart;
+
+            if (animItemHeight > window.innerHeight) {
+                animItemPoint = window.innerHeight - window.innerHeight / animStart;
+            }
+
+            if ((pageYOffset > animItemOffset - animItemPoint) && pageYOffset < (animItemOffset + animItemHeight)) {
+                animItem.classList.add('active');
+            } else {
+                if (!animItem.classList.contains('anim-no-hide')) {
+                    animItem.classList.remove('active');
+                }
+            }
+        }
+
+        function offset(el) {
+            const rect = el.getBoundingClientRect(),
+                scrollLeft = window.pageXOffset || document.documentElement.scrollLeft,
+                scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            return { top: rect.top + scrollTop, left: rect.left + scrollLeft }
+        }
+    };
+
+    window.addEventListener('scroll', animOnScroll);
+
+    setTimeout(() => {
+        animOnScroll();
+    }, 300);
+    
+}
+
+$(function () {
+	$('.slider-partners').slick({
+		arrows: false,
+		dots: false,
+		autoplay: true,
+		slidesToShow: 5,
+		responsive: [
+			{
+				breakpoint: 769,
+				settings: {
+				  centerMode: true,
+				  slidesToShow: 5,
+				}
+			  },
+			  {
+				breakpoint: 376,
+				settings: {
+				  centerMode: true,
+				  centerPadding: '-40px',
+				  slidesToShow: 1,
+				}
+			  },
+		]
+	});
+});
