@@ -54,7 +54,7 @@ if (animItems.length > 0) {
         for (animItem of animItems) {
             const animItemHeight = animItem.offsetHeight;
             const animItemOffset = offset(animItem).top;
-            const animStart = 1;
+            const animStart = 7;
 
             let animItemPoint = window.innerHeight - animItemHeight / animStart;
 
@@ -92,6 +92,8 @@ $(function () {
 		arrows: false,
 		dots: false,
 		autoplay: true,
+		variableWidth: true,
+		centerMode: true,
 		slidesToShow: 5,
 		responsive: [
 			{
